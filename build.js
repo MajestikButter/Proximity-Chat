@@ -7,5 +7,5 @@ require("esbuild").build({
   sourcemap: "linked",
   watch: JSON.parse(process.argv[2] ?? "false"),
   platform: "browser",
-  external: ["esbuild"],
+  external: ["esbuild", "events"],
 });
