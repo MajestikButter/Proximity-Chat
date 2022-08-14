@@ -5,6 +5,7 @@ require("esbuild").build({
   bundle: true,
   target: "es2022",
   sourcemap: "linked",
+  watch: JSON.parse(process.argv[2] ?? "false"),
   platform: "browser",
   external: ["esbuild"],
 });
