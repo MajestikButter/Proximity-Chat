@@ -22,4 +22,3 @@ for (let file of files) {
     fs.rmdirSync(path, { recursive: true });
   }
 }
-fs.unlinkSync();
