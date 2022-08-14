@@ -1,4 +1,4 @@
-require("esbuild").build({
+require("esbuild").buildSync({
   entryPoints: ["./src/index.ts"],
   outfile: "./dist/index.js",
   minify: true,
