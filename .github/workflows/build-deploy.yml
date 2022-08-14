@@ -9,16 +9,19 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
-
-      - name: Github Build & Deploy Action
-        uses: jeoy/github-deploy-actions@v1.0.1
+      - uses: actions/checkout@v1
+      - name: Use Node.js 15
+        uses: actions/setup-node@v1
+        with:
+          node-version: 15
+      - name: Install and Build 🔧
         env:
-          COMMIT_EMAIL: no@email.com
-          COMMIT_NAME: Deploy site
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BASE_BRANCH: main
-          DEPLOY_BRANCH: gh-pages
-          BUILD_SCRIPT: npm build
-          FOLDER: .
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          npm install
+          npm run build
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          branch: generated
+          folder: build
