@@ -4,7 +4,6 @@ require("esbuild").build({
   minify: true,
   bundle: true,
   target: "es2022",
-  // format: "cjs",
   sourcemap: "linked",
   watch: true,
   platform: "browser",
