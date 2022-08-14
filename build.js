@@ -3,7 +3,7 @@ require("esbuild").build({
   outfile: "./dist/index.js",
   minify: true,
   bundle: true,
-  target: ["edge", "chrome", "firefox", "opera", "safari"],
+  target: "es2020",
   sourcemap: "linked",
   format: "cjs",
   watch: JSON.parse(process.argv[2] ?? "false"),

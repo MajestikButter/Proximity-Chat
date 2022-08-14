@@ -3,7 +3,7 @@ require("esbuild").buildSync({
   outfile: "./dist/index.js",
   minify: true,
   bundle: true,
-  target: ["edge", "chrome", "firefox", "opera", "safari"],
+  target: "es2020",
   platform: "browser",
   format: "cjs",
   external: ["esbuild"],
