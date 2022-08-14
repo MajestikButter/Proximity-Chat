@@ -1,7 +1,8 @@
 {
   "scripts": {
     "build": "node build.js false",
-    "watch": "node build.js true"
+    "watch": "node build.js true",
+    "gen": "node generate.js"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.5",
