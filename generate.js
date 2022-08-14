@@ -3,8 +3,9 @@ require("esbuild").buildSync({
   outfile: "./dist/index.js",
   minify: true,
   bundle: true,
-  target: "commonjs",
+  target: ["edge", "chrome", "firefox", "opera", "safari"],
   platform: "browser",
+  format: "cjs",
   external: ["esbuild"],
   define: {
     global: "window",
