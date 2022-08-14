@@ -22,3 +22,4 @@ for (let file of files) {
     fs.rmdirSync(path, { recursive: true });
   }
 }
+fs.renameSync(`${__dirname}/generate.gitignore`, `${__dirname}/.gitignore`);
