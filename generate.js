@@ -10,7 +10,7 @@ require("esbuild").build({
 
 const fs = require("fs");
 const files = fs.readdirSync(__dirname);
-const ignored = ["index.html", "dist", "README.md", "generate.js", "node_modules"];
+const ignored = ["index.html", "dist", "README.md", "generate.js", "node_modules", ".git"];
 for (let file of files) {
   if (ignored.includes(file)) continue;
 
