@@ -41,7 +41,7 @@ connectionForm.addEventListener("submit", async (e) => {
   
   playerList.refresh()
 
-  const match = serverAddress.value.match(/$.+\/\//);
+  const match = serverAddress.value.match(/^.+:\/\//);
   const ws = new WebSocket((match ? serverAddress.value : "ws://" + serverAddress.value));
   const socket = new Socket(ws);
   await socket.waitTillReady();
