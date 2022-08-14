@@ -6,6 +6,7 @@ require("esbuild").build({
   target: "es2022",
   // format: "cjs",
   sourcemap: "linked",
+  watch: true,
   platform: "browser",
   external: ["esbuild"],
 });
