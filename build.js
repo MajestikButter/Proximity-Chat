@@ -3,11 +3,11 @@ require("esbuild").build({
   outfile: "./dist/index.js",
   minify: true,
   bundle: true,
-  target: "es2022",
+  target: "commonjs",
   sourcemap: "linked",
   watch: JSON.parse(process.argv[2] ?? "false"),
   platform: "browser",
-  external: ["esbuild", "events"],
+  external: ["esbuild"],
   define: {
     global: "window",
   },

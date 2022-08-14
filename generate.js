@@ -3,9 +3,9 @@ require("esbuild").buildSync({
   outfile: "./dist/index.js",
   minify: true,
   bundle: true,
-  target: "es2022",
+  target: "commonjs",
   platform: "browser",
-  external: ["esbuild", "events"],
+  external: ["esbuild"],
   define: {
     global: "window",
   },
