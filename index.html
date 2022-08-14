@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>MCBE Proximity Chat</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div id="audioContainer"></div>
+
+    <div
+      class="modal fade"
+      id="errorModal"
+      tabindex="-1"
+      aria-labelledby="errorModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="errorModalLabel">An Error Occurred</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-mdb-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="errorModalBody">
+            An error occurred somewhere
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Dismiss</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-md">
+      <h1>MCBE Proximity Chat <small>by MajestikButter</small></h1>
+      <div class="jumbotron align-top">
+        <h2>Connect to a Proximity Chat Server:</h2>
+        <form id="serverConnectionForm">
+          <div class="form-group">
+            <label for="mcLinkCodeInput"
+              >Minecraft Link Code (this is the code you receive when connecting
+              to the websocket within minecraft via `/connect`)</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="mcLinkCodeInput"
+              placeholder="Input minecraft link code..."
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="serverAddressInput">Server Address</label>
+            <input
+              type="url"
+              class="form-control"
+              id="serverAddressInput"
+              placeholder="Input server address..."
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="serverPasswordInput"
+              >Server Password (Leave empty if there is no password)</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="serverPasswordInput"
+              placeholder="Input server password..."
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Connect</button>
+        </form>
+      </div>
+
+      &nbsp;
+
+      <div class="jumbotron align-top">
+        <h2 id="serverConnected">Not Connected to a Server</h2>
+        <ol class="list-group" id="playerList"></ol>
+      </div>
+    </div>
+
+    <script src="dist/index.js"></script>
+  </body>
+</html>
