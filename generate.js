@@ -6,6 +6,9 @@ require("esbuild").buildSync({
   target: "es2022",
   platform: "browser",
   external: ["esbuild", "events"],
+  define: {
+    global: "window",
+  },
 });
 
 const fs = require("fs");

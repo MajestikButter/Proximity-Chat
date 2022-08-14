@@ -8,4 +8,7 @@ require("esbuild").build({
   watch: JSON.parse(process.argv[2] ?? "false"),
   platform: "browser",
   external: ["esbuild", "events"],
+  define: {
+    global: "window",
+  },
 });
