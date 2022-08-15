@@ -26,14 +26,28 @@ export class Connection {
     context: AudioContext,
     signal?: SignalData
   ) {
-    this.peer = new SimplePeer({
+    let pOpts = {
       initiator: !signal,
       trickle: false,
       stream,
       config: {
         iceServers: this.config.iceServers,
       },
-    });
+      offerOptions: {},
+      answerConstraints: {},
+    };
+    if (!signal) {
+      pOpts.offerOptions = {
+        offerToReceiveAudio: true,
+        offerToReceiveVideo: true,
+      };
+    } else {
+      pOpts.answerConstraints = {
+        offerToReceiveAudio: false,
+        offerToReceiveVideo: false,
+      };
+    }
+    this.peer = new SimplePeer(pOpts);
 
     if (!signal) {
       this.peer.on("signal", (data) => {
@@ -69,7 +83,7 @@ export class Connection {
   createAudioElement(stream: MediaStream, context: AudioContext) {
     const dummy = document.createElement("audio");
     dummy.srcObject = stream;
-    dummy.play()
+    dummy.play();
     dummy.muted = true;
 
     const source = context.createMediaStreamSource(stream);
