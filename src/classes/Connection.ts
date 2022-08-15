@@ -1,6 +1,7 @@
 import SimplePeer, { SignalData } from "simple-peer";
 import { AudioElement, ClientInfo, Config } from "../interfaces";
 import { Client } from "./Client";
+import { playerList } from "./PlayerList";
 import { Socket } from "./Socket";
 
 export class Connection {
@@ -56,6 +57,10 @@ export class Connection {
       this.audioElement = this.createAudioElement(stream, context);
       a.appendChild(this.audioElement!.htmlAudioElement);
     });
+
+    this.peer.on('close', () => {
+      playerList.remove(client);
+    })
   }
 
   createAudioElement(stream: MediaStream, context: AudioContext) {

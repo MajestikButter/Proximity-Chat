@@ -38,12 +38,13 @@ export class Client {
       conn.audioElement?.htmlAudioElement.remove();
     }
     this.socket.ws.close();
+
   }
 
   addConnection(info: ClientInfo, signalData?: SignalData) {
     if (info.isMCClient || this.connections.has(info.id)) return;
 
-    const displayElement = playerList.createDisplayElement(this, info);
+    const displayElement = playerList.add(this, info);
     this.connections.set(
       info.id,
       new Connection(

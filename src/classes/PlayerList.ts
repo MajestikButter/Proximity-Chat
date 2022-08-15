@@ -4,7 +4,7 @@ import { Client } from "./Client";
 export class PlayerList {
   html = document.getElementById("playerList") as HTMLDivElement;
 
-  elements = new Map<string, HTMLDivElement>();
+  private elements = new Map<string, HTMLDivElement>();
 
   refresh() {
     while (this.html.firstChild) this.html.removeChild(this.html.firstChild);
@@ -13,7 +13,7 @@ export class PlayerList {
     }
   }
 
-  createDisplayElement(client: Client, info: ClientInfo) {
+  add(client: Client, info: ClientInfo) {
     const playerEntry = document.createElement("div");
     playerEntry.className = "list-group-item d-flex justify-content-between";
 
@@ -46,6 +46,14 @@ export class PlayerList {
     this.refresh();
 
     return playerEntry;
+  }
+
+  remove(info: ClientInfo) {
+    this.elements.delete(info.id);
+  }
+
+  clear() {
+    this.elements.clear();
   }
 }
 export const playerList = new PlayerList();

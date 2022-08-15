@@ -38,11 +38,11 @@ const audioContext = new AudioContext();
 
 connectionForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  
-  playerList.refresh()
+
+  playerList.refresh();
 
   const match = serverAddress.value.match(/^.+:\/\//);
-  const ws = new WebSocket((match ? serverAddress.value : "ws://" + serverAddress.value));
+  const ws = new WebSocket(match ? serverAddress.value : "ws://" + serverAddress.value);
   const socket = new Socket(ws);
   await socket.waitTillReady();
 
@@ -51,9 +51,12 @@ connectionForm.addEventListener("submit", async (e) => {
 
   ws.addEventListener("close", () => {
     console.log("Connection Closed");
-    playerList.refresh()
+    playerList.refresh();
     if (!client) return;
 
+    playerList.clear();
+    playerList.refresh();
+    client.destroy();
     client = undefined;
     serverConnected.innerText = `Not Connected to a Server`;
     errorModalBody.innerText = "Connection to server closed";
@@ -78,7 +81,7 @@ connectionForm.addEventListener("submit", async (e) => {
     if (!client) return;
     client.id = message.data.id;
 
-    playerList.createDisplayElement(client, message.data.client)
+    playerList.add(client, message.data.client);
     client.setConfig(message.data.config);
     client.socket.send("join", {});
   });
