@@ -30,6 +30,13 @@ export class Connection {
       initiator: !signal,
       trickle: false,
       stream,
+      config: {
+        iceServers: [
+          {
+            urls: "stun:stun.l.google.com:19302",
+          },
+        ],
+      },
     });
 
     if (!signal) {
@@ -58,9 +65,9 @@ export class Connection {
       a.appendChild(this.audioElement!.htmlAudioElement);
     });
 
-    this.peer.on('close', () => {
+    this.peer.on("close", () => {
       playerList.remove(client);
-    })
+    });
   }
 
   createAudioElement(stream: MediaStream, context: AudioContext) {
