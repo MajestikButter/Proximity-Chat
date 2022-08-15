@@ -50,6 +50,13 @@ connectionForm.addEventListener("submit", async (e) => {
     errorModal.toggle();
     return;
   }
+  ws.addEventListener("error", () => {
+    errorModalBody.innerText = `An error occured while connecting to the server`;
+    errorModal.toggle();
+    ws.close();
+    if (client) client.destroy();
+    client = undefined;
+  });
 
   const socket = new Socket(ws);
   await socket.waitTillReady();
