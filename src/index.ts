@@ -34,9 +34,9 @@ if (navigator.mediaDevices) {
   alert("getUserMedia is not supported in this browser.");
 }
 
-connectionForm.addEventListener("submit", async (e) => {
-  const audioContext = new AudioContext();
+const audioContext = new AudioContext();
 
+connectionForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   playerList.refresh();
@@ -62,6 +62,7 @@ connectionForm.addEventListener("submit", async (e) => {
   await socket.waitTillReady();
 
   if (client) client.destroy();
+  await audioContext.resume();
   client = new Client(socket, localStream, audioContext);
 
   ws.addEventListener("close", () => {
