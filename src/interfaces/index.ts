@@ -7,6 +7,7 @@ export interface Message<data extends any = any> {
 export interface Config {
   maxDistance: number;
   spectatorToPlayer: boolean;
+  iceServers: RTCIceServer[]
 }
 export interface ClientInfo {
   name: string;

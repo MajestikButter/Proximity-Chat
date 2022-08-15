@@ -31,11 +31,7 @@ export class Connection {
       trickle: false,
       stream,
       config: {
-        iceServers: [
-          {
-            urls: "stun:stun.l.google.com:19302",
-          },
-        ],
+        iceServers: this.config.iceServers,
       },
     });
 
