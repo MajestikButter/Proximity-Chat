@@ -1,2 +1,2 @@
-# Proximity-Chat_Client
+# Proximity-Chat
  
