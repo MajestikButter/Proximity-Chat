@@ -34,9 +34,9 @@ if (navigator.mediaDevices) {
   alert("getUserMedia is not supported in this browser.");
 }
 
-const audioContext = new AudioContext();
-
 connectionForm.addEventListener("submit", async (e) => {
+  const audioContext = new AudioContext();
+
   e.preventDefault();
 
   playerList.refresh();
