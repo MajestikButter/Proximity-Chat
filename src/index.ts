@@ -42,7 +42,15 @@ connectionForm.addEventListener("submit", async (e) => {
   playerList.refresh();
 
   const match = serverAddress.value.match(/^.+:\/\//);
-  const ws = new WebSocket(match ? serverAddress.value : "ws://" + serverAddress.value);
+  let ws: WebSocket;
+  try {
+    ws = new WebSocket(match ? serverAddress.value : "ws://" + serverAddress.value);
+  } catch (err) {
+    errorModalBody.innerText = `An error occured while connecting to the server:\n${err}`;
+    errorModal.toggle();
+    return;
+  }
+
   const socket = new Socket(ws);
   await socket.waitTillReady();
 
