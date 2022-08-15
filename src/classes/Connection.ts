@@ -69,6 +69,8 @@ export class Connection {
   createAudioElement(stream: MediaStream, context: AudioContext) {
     const dummy = document.createElement("audio");
     dummy.srcObject = stream;
+    dummy.play()
+    dummy.muted = true;
 
     const source = context.createMediaStreamSource(stream);
 
